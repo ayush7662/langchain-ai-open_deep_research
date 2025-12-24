@@ -16,6 +16,23 @@ Track research history, cost, and tokens
 Trace AI executions using LangChain callbacks
 
 
+# 🚀 Tech Stack
+
+Backend: Django, Django REST Framework
+
+AI Orchestration: LangChain, LangGraph
+
+LLM: Google Gemini (gemini-2.5-flash)
+
+Async Tasks: Celery (logic-ready)
+
+Database: SQLite (for simplicity)
+
+Tracing: LangSmith
+
+Auth: Django User model (basic)
+
+
 ## 2️⃣ Features
 
 Research Execution: Start and continue multi-step AI research using LangChain
@@ -151,10 +168,10 @@ UploadedDocument
 | Endpoint                               | Method | Description                                                                          |
 | -------------------------------------- | ------ | ------------------------------------------------------------------------------------ |
 | `/api/research/start`                  | POST   | Start a new research session                                                         |
-| `/api/research/{research_id}/continue` | POST   | Continue an existing research using previous context                                 |
-| `/api/research/{research_id}/upload`   | POST   | Upload PDF/TXT file to be used as research context                                   |
+| `/api/research/1/continue/`            | POST   | Continue an existing research using previous context                                 |
+| `/api/research/1/upload/`              | POST   | Upload PDF/TXT file to be used as research context                                   |
 | `/api/research/history`                | GET    | Retrieve research history for the user                                               |
-| `/api/research/{research_id}`          | GET    | Get research details including summary, reasoning, token usage, cost, and `trace_id` |
+| `/api/research/1/`                     | GET    | Get research details including summary, reasoning, token usage, cost, and `trace_id` |
 
 
 
@@ -197,9 +214,38 @@ response = llm.invoke("Say hello from LangChain inside Django")
 print(response.content)
 
 
+
 ✅ Output:
 
 "Hello from LangChain, happily running inside your Django application!"
+
+
+
+# Upload PDF
+from research.models import UploadedDocument
+
+UploadedDocument.objects.filter(research_id=1).values("file", "extracted_text")
+
+
+# Check Research Details
+
+from research.models import ResearchSession, ResearchSummary, ResearchReasoning, ResearchCost
+
+research = ResearchSession.objects.get(id=1)
+
+summary = ResearchSummary.objects.get(research=research).summary
+
+reasoning = ResearchReasoning.objects.get(research=research).reasoning
+
+cost = ResearchCost.objects.get(research=research)
+
+print("Query:", research.query)
+
+print("Summary:", summary)
+
+print("Reasoning:", reasoning)
+
+print("Cost:", cost.input_tokens, cost.output_tokens, cost.total_cost)
 
 
 
