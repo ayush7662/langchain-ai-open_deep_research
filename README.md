@@ -29,6 +29,52 @@ Cost & Token Tracking: Track input/output tokens and estimated cost
 LangChain Tracing: Debug AI execution using trace_id
 
 
+# 📁 Project File Structure
+
+deep_research_backend/
+│
+├── core/                       # Django project configuration
+│   ├── __init__.py
+│   ├── settings.py             # Global settings (env, apps, middleware)
+│   ├── urls.py                 # Root URL configuration
+│   ├── asgi.py
+│   └── wsgi.py
+│
+├── research/                   # Main research application
+│   ├── __init__.py
+│   ├── admin.py                # Admin panel registrations
+│   ├── apps.py
+│   ├── models.py               # ResearchSession, Cost, Documents, etc.
+│   ├── views.py                # REST APIs (start, continue, upload, history)
+│   ├── urls.py                 # API route mappings
+│   ├── serializers.py          # DRF serializers (optional)
+│   │
+│   ├── ai/                     # LangChain + Open Deep Research integration
+│   │   ├── __init__.py
+│   │   ├── graph.py            # Imported LangGraph workflow (unchanged)
+│   │   ├── runner.py           # Research execution wrapper
+│   │   ├── callbacks.py        # LangSmith tracer integration
+│   │   └── utils.py            # Helpers (prompting, token tracking)
+│   │
+│   ├── tasks.py                # Async/background research execution
+│   └── migrations/
+│       └── __init__.py
+│
+├── media/                      # Uploaded PDFs / TXT files
+│   └── research_docs/
+│
+├── venv/                       # Python virtual environment
+│
+├── db.sqlite3                  # SQLite database
+├── manage.py                   # Django CLI entry point
+│
+├── .env                        # Environment variables (API keys)
+├── .gitignore
+├── requirements.txt            # Project dependencies
+└── README.md                   # Project documentation
+
+
+
 
 ## 3️⃣ Setup Instructions
  3.1 Clone the repo
