@@ -1,4 +1,4 @@
-#📚 Deep Research Django + LangChain Assignment#
+<h1 align="center">📚 Deep Research Django + LangChain Assignment </h1>
 
 *1️⃣ Project Overview*
 
