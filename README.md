@@ -35,7 +35,7 @@ LangChain Tracing: Debug AI execution using trace_id
 
 git clone https://github.com/ayush7662/langchain-ai-open_deep_research/tree/main
 
-cd deep_research_backend
+cd langchain-ai-open_deep_research
 
 
 
