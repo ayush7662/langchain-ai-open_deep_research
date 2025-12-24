@@ -1,4 +1,4 @@
-*📚 Deep Research Django + LangChain Assignment*
+#📚 Deep Research Django + LangChain Assignment#
 
 *1️⃣ Project Overview*
 
