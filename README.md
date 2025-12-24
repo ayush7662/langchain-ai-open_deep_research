@@ -70,22 +70,6 @@ LangChain Tracing: Debug AI execution using trace_id
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 3️⃣ Setup Instructions
  3.1 Clone the repo
 
@@ -130,7 +114,7 @@ Visit: http://127.0.0.1:8000/ → You should see:
 
 
 
-# 1️⃣ Create Admin Username & Password (FIRST STEP)
+#  Create Admin Username & Password (FIRST STEP)
    Run this in terminal:
 
    python manage.py createsuperuser
