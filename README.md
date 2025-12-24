@@ -66,6 +66,7 @@ GEMINI_API_KEY=your_google_gemini_key_here
 
 ## 3.4 Migrate database
 python manage.py makemigrations
+
 python manage.py migrate
 
 
