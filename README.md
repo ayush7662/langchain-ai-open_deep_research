@@ -103,9 +103,116 @@ UploadedDocument
 
 
 # 6️⃣ API Endpoints
-Endpoint	Method	Description
-/api/research/start	POST	Start a new research session
-/api/research/{research_id}/continue	POST	Continue an existing research
-/api/research/{research_id}/upload	POST	Upload PDF/TXT for context
-/api/research/history	GET	List research history for user
-/api/research/{research_id}	GET	Research details (includes summary, reasoning, cost, trace_id)
+
+| Endpoint                               | Method | Description                                                                          |
+| -------------------------------------- | ------ | ------------------------------------------------------------------------------------ |
+| `/api/research/start`                  | POST   | Start a new research session                                                         |
+| `/api/research/{research_id}/continue` | POST   | Continue an existing research using previous context                                 |
+| `/api/research/{research_id}/upload`   | POST   | Upload PDF/TXT file to be used as research context                                   |
+| `/api/research/history`                | GET    | Retrieve research history for the user                                               |
+| `/api/research/{research_id}`          | GET    | Get research details including summary, reasoning, token usage, cost, and `trace_id` |
+
+
+
+# 6.1 Example: Start Research
+POST /api/research/start
+Content-Type: application/json
+
+{
+  "query": "Impact of AI on healthcare",
+  "parent_research_id": null
+}
+
+
+
+# 6.2 Example: Upload PDF
+
+
+POST /api/research/1/upload
+
+Content-Type: multipart/form-data
+
+File: research_doc.pdf
+
+
+# 7️⃣ Testing LangChain in Django Shell
+
+python manage.py shell
+
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash",
+    temperature=0.2
+)
+
+response = llm.invoke("Say hello from LangChain inside Django")
+print(response.content)
+
+
+✅ Output:
+
+"Hello from LangChain, happily running inside your Django application!"
+
+
+
+# 8️⃣ Checking Research Data in Shell
+from research.models import ResearchSession, ResearchCost
+
+# List all research sessions
+for r in ResearchSession.objects.all():
+    print(r.id, r.query, r.status)
+
+# Check cost
+cost = ResearchCost.objects.first()
+print(cost.input_tokens, cost.output_tokens, cost.total_cost)
+
+
+
+
+# 9️⃣ Upload & Extract PDF
+
+Upload via /api/research/{research_id}/upload
+
+PDF content is extracted and stored in UploadedDocument.extracted_text
+
+LangChain can utilize this extracted text as input to research queries
+
+
+
+
+# 10. Complete Assignment Testing Checklist
+
+ Run Django server (python manage.py runserver)
+
+ Create superuser and login to admin
+
+ Start research via /api/research/start
+
+ Continue research via /api/research/{research_id}/continue
+
+ Upload PDF to research session /api/research/{research_id}/upload
+
+ View research history /api/research/history
+
+ View research details /api/research/{research_id} (includes cost & trace_id)
+
+ Test LangChain queries in shell
+
+
+
+ # 11️⃣ Notes
+
+Only GEMINI_API_KEY is required for LangChain
+
+
+
+
+
+
+
+
+
+
+
+
