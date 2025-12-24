@@ -130,6 +130,17 @@ Visit: http://127.0.0.1:8000/ → You should see:
 
 
 
+# 1️⃣ Create Admin Username & Password (FIRST STEP)
+   Run this in terminal:
+
+   python manage.py createsuperuser
+
+ Username: admin
+Email: admin@example.com
+Password: ********
+Password (again): ********
+
+
 
 # 5️⃣ Django Admin
 
@@ -191,11 +202,14 @@ python manage.py shell
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 llm = ChatGoogleGenerativeAI(
+
     model="gemini-2.5-flash",
+    
     temperature=0.2
 )
 
 response = llm.invoke("Say hello from LangChain inside Django")
+
 print(response.content)
 
 
@@ -209,11 +223,15 @@ print(response.content)
 from research.models import ResearchSession, ResearchCost
 
  List all research sessions
+ 
 for r in ResearchSession.objects.all():
+
     print(r.id, r.query, r.status)
 
  Check cost
+ 
 cost = ResearchCost.objects.first()
+
 print(cost.input_tokens, cost.output_tokens, cost.total_cost)
 
 
