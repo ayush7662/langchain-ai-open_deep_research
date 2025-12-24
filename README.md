@@ -208,11 +208,11 @@ print(response.content)
 # 8️⃣ Checking Research Data in Shell
 from research.models import ResearchSession, ResearchCost
 
-# List all research sessions
+ List all research sessions
 for r in ResearchSession.objects.all():
     print(r.id, r.query, r.status)
 
-# Check cost
+ Check cost
 cost = ResearchCost.objects.first()
 print(cost.input_tokens, cost.output_tokens, cost.total_cost)
 
