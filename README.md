@@ -49,14 +49,6 @@ pip install -r requirements.txt
 
 
 
-
-## 3.3 Set GEMINI API key
-
-Create a .env file in the root:
-
-GEMINI_API_KEY=your_google_gemini_key_here
-
-
 ## 3.3 Set GEMINI API key
 
 Create a .env file in the root:
