@@ -31,47 +31,57 @@ LangChain Tracing: Debug AI execution using trace_id
 
 # 📁 Project File Structure
 
-deep_research_backend/
-│
-├── core/                       # Django project configuration
-│   ├── __init__.py
-│   ├── settings.py             # Global settings (env, apps, middleware)
-│   ├── urls.py                 # Root URL configuration
-│   ├── asgi.py
-│   └── wsgi.py
-│
-├── research/                   # Main research application
-│   ├── __init__.py
-│   ├── admin.py                # Admin panel registrations
-│   ├── apps.py
-│   ├── models.py               # ResearchSession, Cost, Documents, etc.
-│   ├── views.py                # REST APIs (start, continue, upload, history)
-│   ├── urls.py                 # API route mappings
-│   ├── serializers.py          # DRF serializers (optional)
-│   │
-│   ├── ai/                     # LangChain + Open Deep Research integration
-│   │   ├── __init__.py
-│   │   ├── graph.py            # Imported LangGraph workflow (unchanged)
-│   │   ├── runner.py           # Research execution wrapper
-│   │   ├── callbacks.py        # LangSmith tracer integration
-│   │   └── utils.py            # Helpers (prompting, token tracking)
-│   │
-│   ├── tasks.py                # Async/background research execution
-│   └── migrations/
-│       └── __init__.py
-│
-├── media/                      # Uploaded PDFs / TXT files
-│   └── research_docs/
-│
-├── venv/                       # Python virtual environment
-│
-├── db.sqlite3                  # SQLite database
-├── manage.py                   # Django CLI entry point
-│
-├── .env                        # Environment variables (API keys)
-├── .gitignore
-├── requirements.txt            # Project dependencies
-└── README.md                   # Project documentation
+
+| Path / File                | Description                                              |
+| -------------------------- | -------------------------------------------------------- |
+| `deep_research_backend/`   | Root project directory                                   |
+| `core/`                    | Django project configuration                             |
+| `core/__init__.py`         | Package initializer                                      |
+| `core/settings.py`         | Django settings (apps, middleware, env vars)             |
+| `core/urls.py`             | Root URL routing                                         |
+| `core/asgi.py`             | ASGI config (async support)                              |
+| `core/wsgi.py`             | WSGI config (deployment)                                 |
+| `research/`                | Main application handling research logic                 |
+| `research/admin.py`        | Admin panel registrations                                |
+| `research/apps.py`         | App configuration                                        |
+| `research/models.py`       | Database models (ResearchSession, Cost, Documents, etc.) |
+| `research/views.py`        | REST APIs (start, continue, upload, history, details)    |
+| `research/urls.py`         | Research API routes                                      |
+| `research/serializers.py`  | DRF serializers (optional)                               |
+| `research/tasks.py`        | Background / async research execution                    |
+| `research/ai/`             | LangChain + Open Deep Research integration               |
+| `research/ai/graph.py`     | Imported LangGraph workflow (unchanged)                  |
+| `research/ai/runner.py`    | Research execution wrapper                               |
+| `research/ai/callbacks.py` | LangSmith tracing callbacks                              |
+| `research/ai/utils.py`     | Token & cost tracking helpers                            |
+| `research/migrations/`     | Database migrations                                      |
+| `media/`                   | Uploaded research documents                              |
+| `media/research_docs/`     | Stored PDFs / TXT files                                  |
+| `venv/`                    | Python virtual environment                               |
+| `db.sqlite3`               | SQLite database                                          |
+| `manage.py`                | Django CLI entry                                         |
+| `.env`                     | Environment variables (API keys, tracing flags)          |
+| `.gitignore`               | Git ignored files                                        |
+| `requirements.txt`         | Python dependencies                                      |
+| `README.md`                | Project documentation                                    |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
