@@ -8,7 +8,7 @@ https://www.loom.com/share/c71aae3b111849cb8880354cc534ddb0
 https://www.loom.com/share/027736f38465404a81e5e3c1166d3954
 
 
-## 1️⃣ Project Overview*
+## 1️⃣ Project Overview
 
 This project implements a Deep Research platform using Django REST Framework and LangChain (Gemini LLM).
 It allows users to:
